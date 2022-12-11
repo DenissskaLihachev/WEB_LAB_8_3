@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+<style>
+    .Task
+    {
+        width: 100%;
+        height: 150px;
+        background-color: aqua;
+        border-radius: 10px;
+        text-align: center;
+        padding-top: 20px;
+    }
+</style>
+
+<body>
+
+    <div class="row" id="Text"></div>
+    
+    <script>
+        class Person {
+        name
+        age
+        height
+        str
+
+        constructor(name, age, height) {
+            this.name = name
+            this.age = age
+            this.height = height
+            this.str = getDataStr([this.name, this.age, this.height])
+        }
+
+        static display(persons) {
+            let str = ""
+            let counter = persons.length
+            for (let i = 0; i < counter; i++)
+                str += persons.pop().str;
+
+            return str
+        }
+    }
+
+    class Employee extends Person {
+        post
+
+        constructor(name, age, height, post) {
+            super(name, age, height)
+            this.post = post
+            this.str = getDataStr([this.name, this.age, this.height, this.post])
+        }
+
+        static display(persons) {
+            let str = ""
+            let counter = persons.length
+            for (let i = 0; i < counter; i++)
+                str += persons.pop().str;
+
+            return str
+        }
+    }
+
+    function getFieldStr(arr) {
+        let str = ""
+        for (let i = 0; i < arr.length; i++) {
+            str += `<p>` + arr[i] + `</p>`
+        }
+        return str
+    }
+
+    function getDataStr(arr) {
+        return `<div class='task inline'>` + getFieldStr(arr) + `</div>`
+    }
+        
+        let arr = []
+
+        while (true)
+        {
+            let name = prompt("Employee: Введите ФИО")
+            if (name === "") break;
+
+            let age = prompt("Employee: Введите возраст")
+            if (age === "") break;
+
+            let post = prompt("Employee: Введите должность")
+            if (post === "") break;
+
+            arr.push(new Employee(name, age, post))
+        }
+
+        while (true)
+        {
+            let name = prompt("Person: Введите ФИО")
+            if (name === "") break;
+
+            let age = prompt("Person: Введите возраст")
+            if (age === "") break;
+
+            arr.push(new Person(name, age))
+        }
+
+        document.getElementById("Text").innerHTML = Employee.display(arr);
+    </script>
+</body>
+
+</html>
